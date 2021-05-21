@@ -1,0 +1,22 @@
+﻿@page "/"
+@page "/servo"
+@using System.Net.Http
+@inject HttpClient Http
+
+<h3>Servo Control</h3>
+<input type="range" class="form-control-range"
+       min="0"
+       max="180"
+       step="1"
+       @onchange="SetAngle" />
+
+@code {
+    private int currentAngle = 0;
+
+    private async Task SetAngle(ChangeEventArgs e)
+    {
+        int.TryParse(e.Value.ToString(), out currentAngle);
+
+        await Http.GetAsync($"Servo?angle={currentAngle}");
+    }
+}
