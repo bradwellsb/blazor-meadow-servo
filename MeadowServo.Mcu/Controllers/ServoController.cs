@@ -1,4 +1,5 @@
 ﻿using Meadow.Foundation.Servos;
+using Meadow.Units;
 
 namespace MeadowServo.Mcu.Controllers
 {
@@ -23,7 +24,7 @@ namespace MeadowServo.Mcu.Controllers
 
         public void SetAngle(int angle)
         {
-            servo.RotateTo(angle);
+            servo.RotateTo(new Angle(angle));
         }
     }
 }
